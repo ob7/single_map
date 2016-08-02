@@ -1,35 +1,35 @@
 <?php defined('C5_EXECUTE') or die("Access Denied.");
-$ih = Core::make('helper/image');
-if (is_object($f) && $f->getFileID()) {
-	$thumb = $ih->getThumbnail($f, 640, 480, true);
-}
 ?>
 
-<?php if($linkUrl){?>
-<a class="archebian-image" href="<?=$linkUrl?>">
-<?php } else { ?>
-<div class="archebian-image">
-<?php } ?>
-
-	<?php if($thumb){?>
-	<img src="<?=$thumb->src?>" alt="">
-	<?php } ?>
-	<?php if ($title || $content) {?>
-	<div class="archebian-image-content">
-	<?php } ?>
-	<?php if ($title) {?>
-	<?=$title?>
-	<?php } ?>
-
-	<?php if ($content) {?>
-	<?=$content?>
-	<?php } ?>
-	<?php if ($title || $content) {?>
-	</div>
-	<?php } ?>
-
-<?php if($linkUrl){?>
-</a>
-<?php } else { ?>
+<div class="single-map" data-map-lat="<?=$lat?>" data-map-lng="<?=$lng?>" data-map-url="<?=$customLink ?>">
+    <div class="map"></div>
 </div>
-<?php } ?>
+<script>
+ function initMap() {
+     console.log("Map initiated");
+     var mapLat = $('.single-map').data('map-lat');
+     var mapLng = $('.single-map').data('map-lng');
+     var mapURL = $('.single-map').data('map-url');
+     var latLng = {lat: mapLat, lng: mapLng};
+     console.log("lat is " + mapLat);
+     console.log("lng is " + mapLat);
+     var map = new GMaps({
+         div: '.map',
+         lat: mapLat,
+         lng: mapLng,
+         scrollwheel: false,
+         zoom: 17
+     });
+     map.addMarker({
+         lat: mapLat,
+         lng: mapLng,
+         url: mapURL
+     });
+     google.maps.event.addListener(map.markers[0], 'click', function() {
+         window.open(
+             this.url,
+             '_blank'
+         );
+     });
+ }
+</script>

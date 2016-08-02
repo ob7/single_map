@@ -25,6 +25,23 @@ class Controller extends Package
         $pkg = parent::install();
         BlockType::installBlockTypeFromPackage('single_map', $pkg);
     }
+    public function on_start()
+    {
+        $al = \Concrete\Core\Asset\AssetList::getInstance();
+        $al->register(
+            'javascript', 'googleMapsAPI', 'https://maps.googleapis.com/maps/api/js?key=AIzaSyC_eOliAR35peqAtdN6NquzIMQinPqwx5Q&callback=initMap', array('local' => false)
+        );
+
+        $al->register(
+            'javascript', 'gmapsjs', 'blocks/single_map/vendor/hpneo/gmaps.js', array(), 'single_map'
+        );
+
+        $al->registerGroup('googleMapsAPI',array(
+			      array('javascript','gmapsjs'),
+            array('javascript','googleMapsAPI'),
+		    ));
+	  }
+
 }
 
 ?>

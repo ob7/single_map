@@ -1,24 +1,34 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <schema
-  xmlns="http://www.concrete5.org/doctrine-xml/0.5"
-  xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://www.concrete5.org/doctrine-xml/0.5 http://concrete5.github.io/doctrine-xml/doctrine-xml-0.5.xsd">
+    xmlns="http://www.concrete5.org/doctrine-xml/0.5"
+    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://www.concrete5.org/doctrine-xml/0.5 http://concrete5.github.io/doctrine-xml/doctrine-xml-0.5.xsd">
 
-  <table name="btImagePlus">
+  <table name="btSingleMap">
+
     <field name="bID" type="integer">
       <unsigned/>
       <key/>
     </field>
-    <field name="internalLinkCID" type="integer">
-      <unsigned/>
-      <default value="0"/>
-    </field>
     <field name="customLink" type="string" size="255"/>
     <field name="title" type="string" size="255"/>
-    <field name="fID" type="integer">
+
+    <field name="addressLine1" type="text"/>
+    <field name="addressLine2" type="text"/>
+    <field name="city" type="string"/>
+    <field name="state" type="string"/>
+    <field name="zip" type="string"/>
+    <field name="country" type="string"/>
+
+    <field name="lat" type="string">
       <unsigned/>
       <default value="0"/>
     </field>
-	<field name="content" type="text"></field>
-  </table>
+    <field name="lng" type="string">
+      <unsigned/>
+      <default value="0"/>
+    </field>
+    <field name="fulladdress" type="text"/>
+    <field name="address" type="text"/>
 
+  </table>
 </schema>
